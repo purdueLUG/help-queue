@@ -44,4 +44,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+queue = ['test'];
+
 module.exports = app;
+
+console.log("server start!");

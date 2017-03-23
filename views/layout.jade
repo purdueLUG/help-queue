@@ -1,7 +1,10 @@
-doctype html
+doctype
 html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    section#wrapper
+        block content
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(src='/javascripts/queue.js')

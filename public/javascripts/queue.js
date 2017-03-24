@@ -1,17 +1,18 @@
 // Enqueue student button
 $('#btnEnqueue').on('click', enqueueStudent);
 function enqueueStudent(event){
+    //console.log(event.currentTarget.baseURI);
     data = {
-        name: $('#studentName').val()
+        name: Cookies.get('username')
     };
-    $.post('/enqueue', data);
-    $('body').load('/');
+    $.post(event.currentTarget.baseURI + '/enqueue', data);
+    $('body').load(event.currentTarget.baseURI);
     console.log("trying to enqueue " + data['name']);
 };
 
 // Dequeue student button
 $('#btnDequeue').on('click', DequeueStudent);
 function DequeueStudent(event){
-    $.post('/dequeue', data);
-    $('body').load('/');
+    $.post(event.currentTarget.baseURI + '/dequeue');
+    $('body').load(event.currentTarget.baseURI);
 };

@@ -10,4 +10,5 @@ body {
   margin-right: auto;
   background: #fff;
   padding: 20px;
+  border: 2px solid #f00;
 }

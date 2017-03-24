@@ -1,31 +1,27 @@
 var express = require('express');
 var router = express.Router();
 
-var studentQueue = [];
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', {
-        title: 'The ECE 264 Open Lab Queue',
-        queue: studentQueue
+        title: 'Lab queue'
     });
 });
 
-// handle eneque requests
-router.post('/enqueue', function(req, res) {
-    // enqueue student only if he's not in the queue already
-    if(studentQueue.indexOf(req.body['name']) < 0){
-        studentQueue.push(req.body['name']);
-    }
-    console.log(studentQueue);
-    res.send(200);
+/*
+router.get('/course', function(req, res, next) {
+    res.render('course', {
+        title: 'Lab queue'
+    });
+    /*
+      console.log(req.params);
+      res.render('course', {
+      title: 'The ECE 264 Open Lab Queue',
+      queue: studentQueue
+      });
+      res.send(200);
+    res.send("Hello, world!");
 });
-
-// handle dequeue requests
-router.post('/dequeue', function(req, res) {
-    studentQueue.shift();
-    console.log(studentQueue);
-    res.send(200);
-});
+*/
 
 module.exports = router;

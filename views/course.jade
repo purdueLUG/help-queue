@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  h3 Welcome to the queue!
+  if queue.length > 0
+    p Oldest
+    ul#queue
+      each val in queue
+        li=val
+    p Newest
+  else
+    p The queue is empty!
+  //input#studentName(type='text', placeholder='Name')
+  button#btnEnqueue Enqueue
+  button#btnDequeue Dequeue

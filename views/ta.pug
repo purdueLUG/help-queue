@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  h3 Welcome to the queue!
+  div
+    if queue.length > 0
+      p Oldest
+      ul(class='list-group')
+        each val in queue
+          li(class='list-group-item')=val
+      p Newest
+    else
+      p The queue is empty!
+  button#btnDequeue Dequeue
+  script(src='/javascripts/ta.js')

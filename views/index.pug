@@ -1,0 +1,28 @@
+extends layout
+
+
+block content
+  div#titleBox(class='jumbotron')
+    h1= title
+  div(class="container-fluid")
+    div(class="row")
+      div(class="col-md-6")
+        h3 Are you a student?
+        h4 Join a help queue!
+        p Please indicate your name choose a course:
+        div(class='form-group')
+          input#studentName(type='text', class='form-control input-sm', placeholder='Name')
+          select#slctCourse(class='form-control input-sm')
+            each val,index in queue
+              option=index
+          button#btnSubmitName(class='btn') Go to queue!
+      div(class="col-md-6")
+        h3 Are you a TA?
+        h4 Create a help queue!
+        p Enter your course name and lock it with a password.
+        div(class='form-group')
+          input#course(type='text', class='form-control input-sm', placeholder='Course name')
+          input#password(type='password', class='form-control input-sm', placeholder='Password')
+          button#btnSubmitCourse(class='btn') Create queue!
+  script(src='/javascripts/home.js')
+

@@ -1,6 +1,4 @@
 body {
-  font: 62.5%/1.5 Helvetica, Arial, "Lucida Grande", "Lucida Sans", Tahoma, Verdana, sans-serif;
-  text-align: center;
   background: #000;
 }
 #wrapper {
@@ -10,5 +8,9 @@ body {
   margin-right: auto;
   background: #fff;
   padding: 20px;
-  border: 2px solid #f00;
+  border-radius: 20px;
+}
+#titleBox {
+  text-align: center;
+  border-radius: 20px;
 }

@@ -1,0 +1,17 @@
+doctype
+html
+  head
+    title= title
+    // get jquery
+    //script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    // get cookie plugin
+    script(src='/javascripts/js.cookie.js')
+    // get bootstrap
+    link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+    //script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
+    // get personal style
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    section#wrapper
+        block content

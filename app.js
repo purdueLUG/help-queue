@@ -7,13 +7,17 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var course = require('./routes/course');
+var ta = require('./routes/ta');
 //var users = require('./routes/users');
 
 var app = express();
+studentQueue = {};
+testGlobal = 'global var';
+console.log('studentQueue emtpy');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -25,8 +29,8 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-//app.use('/:dept:num(\d\d\d)', course);
 app.use('/course', course);
+app.use('/ta', ta);
 //app.use('/users', users);
 
 // catch 404 and forward to error handler

@@ -1,6 +1,4 @@
-// Submit Course button
-
-console.log('hello from home.js');
+// Submit course button
 
 $('#btnSubmitCourse').on('click', submitCourse);
 
@@ -18,11 +16,10 @@ function submitCourse(event){
     };
     Cookies.set('password', data['password']);
     target = '/ta/' + data['course'];
-    console.log('trying to access ' + target);
     $(location).attr('href', target);
 };
 
-// Submit Name button
+// Submit student button
 $('#btnSubmitName').on('click', submitName);
 
 $('#studentName').keydown(function(event){
@@ -36,8 +33,8 @@ function submitName(event){
         name: $('#studentName').val(),
         course: $('#slctCourse').val()
     };
-    Cookies.set('username', data['name']);
-    target = '/course/' + data['course'];
-    console.log('trying to access ' + target);
+    Cookies.set('username', data.name);
+    Cookies.set('course', data.course);
+    target = '/course/' + data.course;
     $(location).attr('href', target);
 };

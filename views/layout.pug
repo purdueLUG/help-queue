@@ -2,16 +2,21 @@ doctype
 html
   head
     title= title
-    // get jquery
-    //script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    // jquery
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
-    // get cookie plugin
+    // cookie plugin
     script(src='/javascripts/js.cookie.js')
-    // get bootstrap
+    // bootstrap
     link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
-    //script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
-    // get personal style
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
+    // personal style
     link(rel='stylesheet', href='/stylesheets/style.css')
+    // socket.io
+    script(src="/socket.io/socket.io.js")
   body
     section#wrapper
-        block content
+      block content
+    // page scripts
+    script(src='/javascripts/queue.js')
+    script(src='/javascripts/home.js')
+    script(src='/javascripts/ta.js')

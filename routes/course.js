@@ -11,8 +11,6 @@ router.get('/:className', function(req, res, next) {
         title: 'The ' + className + ' help queue',
         queue: studentQueue[className]
     });
-    //res.sendStatus(200);
-    //res.send("Hello, world!");
 });
 
 router.post('/:className', function(req, res, next) {

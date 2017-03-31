@@ -5,14 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// routes
 var index = require('./routes/index');
 var course = require('./routes/course');
 var ta = require('./routes/ta');
-//var users = require('./routes/users');
 
 var app = express();
 studentQueue = {};
-testGlobal = 'global var';
 console.log('studentQueue emtpy');
 
 // view engine setup
@@ -51,8 +50,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-queue = ['test'];
-
 module.exports = app;
-
-console.log("server start!");

@@ -5,15 +5,8 @@ socket.on('enqueue', function(msg){
     $('#queueList').append('<li class=\'list-group-item\'>' + msg.name + '</li>');
 });
 
-// Enqueue student button
-$('#btnEnqueue').on('click', enqueueStudent);
-function enqueueStudent(event){
-    data = {
-        name: Cookies.get('username'),
-        course: Cookies.get('course')
-    };
-    console.log(data);
-    socket.emit('enqueue', data);
-    //return false;
-};
-
+socket.on('dequeue', function(msg){
+    // removes the first child of #queueList
+    $('#queueList :first-child').remove();
+    console.log($('#queueList ul li:first'));
+});

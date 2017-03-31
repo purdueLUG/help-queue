@@ -13,6 +13,7 @@ router.get('/:className', function(req, res, next) {
     });
 });
 
+/*
 router.post('/:className', function(req, res, next) {
     console.log(req.params);
     res.sendStatus(200);
@@ -36,5 +37,6 @@ router.post('/:className/dequeue', function(req, res) {
     console.log(studentQueue);
     res.sendStatus(200);
 });
+*/
 
 module.exports = router;

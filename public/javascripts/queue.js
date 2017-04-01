@@ -8,5 +8,4 @@ socket.on('enqueue', function(msg){
 socket.on('dequeue', function(msg){
     // removes the first child of #queueList
     $('#queueList :first-child').remove();
-    console.log($('#queueList ul li:first'));
 });

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // routes
 var index = require('./routes/index');
-var course = require('./routes/course');
+var student = require('./routes/student');
 var ta = require('./routes/ta');
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/course', course);
+app.use('/student', student);
 app.use('/ta', ta);
 //app.use('/users', users);
 

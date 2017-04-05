@@ -35,6 +35,6 @@ function submitName(event){
     };
     Cookies.set('username', data.name);
     Cookies.set('course', data.course);
-    target = '/course/' + data.course;
+    target = '/student/' + data.course;
     $(location).attr('href', target);
 };

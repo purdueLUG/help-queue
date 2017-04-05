@@ -100,10 +100,13 @@ io.on('connection', function(socket){
     socket.on('enqueue', function(msg){
         // make sure message fields are defined
         if(msg.course != undefined && msg.name != undefined){
-            // only enqueue if user is not in the queue
-            if(studentQueue[msg.course].indexOf(msg.name) < 0){
-                studentQueue[msg.course].push(msg.name);
-                io.emit('enqueue', msg);
+            // ensure that course queue exists
+            if(studentQueue.hasOwnProperty(msg.course)){
+                // only enqueue if user is not in the queue
+                if(studentQueue[msg.course].indexOf(msg.name) < 0){
+                    studentQueue[msg.course].push(msg.name);
+                    io.emit('enqueue', msg);
+                }
             }
         }
     });

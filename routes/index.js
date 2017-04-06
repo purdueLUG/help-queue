@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
         title: 'Help Queue',
         queue: studentQueue
     });
-    console.log(studentQueue);
 });
 
 module.exports = router;

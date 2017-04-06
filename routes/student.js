@@ -35,9 +35,12 @@ router.post('/:course/enqueue', function(req, res) {
     };
 
 
-    // enqueue student only if he's not in the queue already
-    if(studentQueue[course].find(matchName, name) == undefined){
-        studentQueue[course].push(entry);
+    // ensure that queue exists
+    if(studentQueue[course] != undefined){
+        // enqueue student only if he's not in the queue already
+        if(studentQueue[course].find(matchName, name) == undefined){
+            studentQueue[course].push(entry);
+        }
     }
     res.sendStatus(200);
 });

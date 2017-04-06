@@ -9,7 +9,6 @@ $('#course').keydown(function(event){
 });
 
 function submitCourse(event){
-    console.log('submit course press');
     data = {
         password: $('#password').val(),
         course: $('#course').val()

@@ -1,16 +1,21 @@
 ** Dependencies
 *** npm
      The Node Package Manager.  This will install all the needed node modules.
-** Usage
-   To run server:
-
+    
+** Install
+   Run these commands to install the help-queue server.
    #+begin_src
    git clone https://github.com/purdueLUG/help-queue
    cd help-queue
    npm install
+   #+end_src
+** Usage
+   To start the server, run
+
+   #+begin_src
    npm start
    #+end_src
-   
+
    The server will run by default on port 3000. If you want to run the server on port 80, run
 
    #+begin_src

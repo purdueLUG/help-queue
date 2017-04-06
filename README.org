@@ -1,5 +1,5 @@
 ** Dependencies
-   + npm
+*** npm
      The Node Package Manager.  This will install all the needed node modules.
 ** Usage
    To run server:
@@ -21,4 +21,16 @@
 
    #+begin_src
    sudo PORT=80 npm start
+   #+end_src
+** Development
+   For development purposes, install [[nodemon.io][nodemon]].
+
+   #+begin_src
+   npm install -g nodemon
+   #+end_src
+   
+   To run the server,
+
+   #+begin_src
+   DEBUG=help-queue* nodemon
    #+end_src

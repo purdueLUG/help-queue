@@ -24,8 +24,3 @@ socket.on('dequeue', function(msg){
         $('body').load(window.location.href);
     }
 });
-
-socket.on('beforeunload',function(){
-    console.log('\'bout to unload');
-    socket.close();
-});

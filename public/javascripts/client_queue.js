@@ -7,9 +7,9 @@ socket.on('enqueue', function(msg){
     // first element is full path, second is matched in the parens
     var course = window.location.pathname.match(re)[1];
 
-    // only append if trying to enqueue on the right course
+    // only enqueue if on the right course
     if (course == msg.course){
-        $('#queueList').append('<li class=\'list-group-item\'>' + msg.name + '</li>');
+        $('body').load(window.location.href);
     }
 });
 
@@ -21,7 +21,11 @@ socket.on('dequeue', function(msg){
 
     // only dequeue if on the right course
     if (course == msg.course){
-        // removes the first child of #queueList
-        $('#queueList :first-child').remove();
+        $('body').load(window.location.href);
     }
+});
+
+socket.on('beforeunload',function(){
+    console.log('\'bout to unload');
+    socket.close();
 });

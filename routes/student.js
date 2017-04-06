@@ -16,4 +16,16 @@ router.get('/:course', function(req, res, next) {
     }
 });
 
+// handle eneque requests
+router.post('/:course/enqueue', function(req, res) {
+    var course = req.params['course'];
+    console.log(course);
+    // enqueue student only if he's not in the queue already
+    if(studentQueue[course].indexOf(req.body['name']) < 0){
+        studentQueue[course].push(req.body['name']);
+    }
+    console.log(studentQueue[course]);
+    res.sendStatus(200);
+});
+
 module.exports = router;

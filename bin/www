@@ -98,25 +98,11 @@ function onListening() {
 io.on('connection', function(socket){
     // handle enqueue requests
     socket.on('enqueue', function(msg){
-        // make sure message fields are defined
-        if(msg.course != undefined && msg.name != undefined){
-            // ensure that course queue exists
-            if(studentQueue.hasOwnProperty(msg.course)){
-                // only enqueue if user is not in the queue
-                if(studentQueue[msg.course].indexOf(msg.name) < 0){
-                    studentQueue[msg.course].push(msg.name);
-                    io.emit('enqueue', msg);
-                }
-            }
-        }
+        io.emit('enqueue', msg);
     });
 
     //handle dequeue requests
     socket.on('dequeue', function(msg){
-        // make sure course is defined
-        if(msg.course != undefined){
-            studentQueue[msg.course].shift();
-            io.emit('dequeue', msg);
-        }
+        io.emit('dequeue', msg);
     });
 });

@@ -11,5 +11,11 @@ function enqueueStudent(event){
         name: Cookies.get('username'),
         course: course
     };
+
+    // enqueue with web sockets
     socket.emit('enqueue', data);
+
+    // enqueue with post request
+    $.post(window.location.href + '/enqueue', data);
+    $('body').load(window.location.href);
 };

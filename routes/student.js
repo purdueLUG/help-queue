@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+
+function matchName(entry){
+    return (this == entry.name);
+}
+
 router.get('/:course', function(req, res, next) {
     var course = req.params['course'];
 
@@ -18,13 +23,22 @@ router.get('/:course', function(req, res, next) {
 
 // handle eneque requests
 router.post('/:course/enqueue', function(req, res) {
-    var course = req.params['course'];
-    console.log(course);
+    // get current time as string
+    var date = new Date();
+    var timeStamp = date.toLocaleString();
+
+    var name = req.body['name'];
+    var course = req.body['course'];
+    var entry = {
+        name : name,
+        timeStamp : timeStamp
+    };
+
+
     // enqueue student only if he's not in the queue already
-    if(studentQueue[course].indexOf(req.body['name']) < 0){
-        studentQueue[course].push(req.body['name']);
+    if(studentQueue[course].find(matchName, name) == undefined){
+        studentQueue[course].push(entry);
     }
-    console.log(studentQueue[course]);
     res.sendStatus(200);
 });
 

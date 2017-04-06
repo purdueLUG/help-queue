@@ -7,6 +7,6 @@ block content
     p Oldest
     ul#queueList(class='list-group')
       each val in queue
-        li(class='list-group-item')=val
+        li(class='list-group-item')=val.name
     p Newest
   button#btnEnqueue(class='btn') Enqueue

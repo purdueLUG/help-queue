@@ -4,9 +4,14 @@ block content
   h1= title
   h3 Welcome to the queue!
   div
-    p Oldest
-    ul#queueList(class='list-group')
-      each val in queue
-        li(class='list-group-item')=val
-    p Newest
+    table#queueList(class='table')
+      thead
+        tr
+          th Name
+          th Time stamp
+      tbody
+        each val in queue
+          tr
+            td=val.name
+            td=val.timeStamp
   button#btnDequeue(class='btn') Dequeue

@@ -1,0 +1,24 @@
+** Dependencies
+   + npm
+     The Node Package Manager.  This will install all the needed node modules.
+** Usage
+   To run server:
+
+   #+begin_src
+   git clone https://github.com/purdueLUG/help-queue
+   cd help-queue
+   npm install
+   npm start
+   #+end_src
+   
+   The server will run by default on port 3000. If you want to run the server on port 80, run
+
+   #+begin_src
+   PORT=80 npm start
+   #+end_src
+   
+   Note that you probably need elevated permissions for ports less than 1024, so run
+
+   #+begin_src
+   sudo PORT=80 npm start
+   #+end_src

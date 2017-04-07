@@ -94,11 +94,16 @@ function onListening() {
 /*
  * socket.io stuff
  */
+function matchName(entry){
+    return (this == entry.name);
+}
 
 io.on('connection', function(socket){
     // handle enqueue requests
     socket.on('enqueue', function(msg){
-        io.emit('enqueue', msg);
+        if(queueData[msg.course].queue.find(matchName, msg.name) == undefined){
+            io.emit('enqueue', msg);
+        }
     });
 
     //handle dequeue requests

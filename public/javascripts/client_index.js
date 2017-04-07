@@ -3,25 +3,26 @@ $('#taEnterQueue').submit(taEnterQueue);
 
 function taEnterQueue(event){
     event.preventDefault();
-    data = {
-        password: $('#oldPassword').val(),
-        course: $('#slctTACourse').val()
-    };
-    Cookies.set('password', data['password']);
-    target = '/ta/' + data['course'];
+
+    var course = $('#slctTACourse').val();
+    var password = $('#oldPassword').val();
+
+    Cookies.set('pass_' + course, password);
+    target = '/ta/' + course;
     $(location).attr('href', target);
 }
+
 // TA create course button
 $('#createQueue').submit(createQueue);
 
 function createQueue(event){
     event.preventDefault();
-    data = {
-        password: $('#newPassword').val(),
-        course: $('#newCourse').val()
-    };
-    Cookies.set('password', data['password']);
-    target = '/ta/' + data['course'];
+
+    var course = $('#newCourse').val();
+    var password = $('#newPassword').val();
+
+    Cookies.set('pass_' + course, password);
+    target = '/ta/' + course;
     $(location).attr('href', target);
 }
 

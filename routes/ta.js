@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/:course', function(req, res, next) {
     var course = req.params['course'];
-    var password = req.cookies.password;
+    var password = req.cookies['pass_' + course];
 
     //if creating queue
     if (queueData[course] == undefined){
@@ -20,6 +20,7 @@ router.get('/:course', function(req, res, next) {
         title: 'The ' + course + ' help queue',
         queue: queueData[course].queue
     });
+
 });
 
 // handle eneque requests

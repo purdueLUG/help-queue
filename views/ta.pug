@@ -4,12 +4,12 @@ block content
   h1= title
   h3 Welcome to the queue!
   div
-    table#queueList(class='table')
+    table(class='table')
       thead
         tr
           th Name
           th Time stamp
-      tbody
+      tbody#queueList
         each val in queue
           tr
             td=val.name

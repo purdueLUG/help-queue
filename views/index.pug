@@ -10,18 +10,37 @@ block content
         h3 Are you a student?
         h4 Join a help queue!
         p Please indicate your name choose a course:
-        div(class='form-group')
-          input#studentName(type='text', class='form-control input-sm', placeholder='Name')
-          select#slctCourse(class='form-control input-sm')
-            each val,index in queue
-              option=index
-          button#btnSubmitName(class='btn') Go to queue!
+        form#studentEnterQueue
+          div(class='form-group')
+            input#studentName(type='text', class='form-control input-sm', placeholder='Name')
+          div(class='form-group')
+            select#slctStudentCourse(class='form-control input-sm')
+              each val,index in queue
+                option=index
+          div(class='form-group')
+            input(type='submit', class='btn', value='Go to queue!')
       div(class="col-md-6")
         h3 Are you a TA?
+        h4 Enter your help queue!
+        p Choose your course and enter its password:
+        form#taEnterQueue
+          div(class='form-group')
+            select#slctTACourse(class='form-control input-sm')
+              each val,index in queue
+                option=index
+          div(class='form-group')
+            input#oldPassword(type='password', class='form-control input-sm', placeholder='Password')
+          div(class='form-group')
+            input(type='submit', class='btn', value='Enter queue!')
         h4 Create a help queue!
-        p Enter your course name and lock it with a password.
-        div(class='form-group')
-          input#course(type='text', class='form-control input-sm', placeholder='Course name')
-          input#password(type='password', class='form-control input-sm', placeholder='Password')
-          button#btnSubmitCourse(class='btn') Create queue!
+        p Enter your course name and lock it with a password:
+        form#createQueue
+          div(class='form-group')
+            input#newCourse(type='text', class='form-control input-sm', placeholder='Course name')
+          div(class='form-group')
+            input#newPassword(type='password', class='form-control input-sm', placeholder='Password')
+          div(class='form-group')
+            input#verifyPassword(type='password', class='form-control input-sm', placeholder='Verify password')
+          div(class='form-group')
+            input#submitCreateQueue(type='submit', class='btn', value='Create a queue!')
 

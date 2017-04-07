@@ -1,15 +1,24 @@
 var express = require('express');
 var router = express.Router();
 
-
 router.get('/:course', function(req, res, next) {
     var course = req.params['course'];
-    if (studentQueue[course] == undefined){
-        studentQueue[course] = [];
+    var password = req.cookies.password;
+
+    //if creating queue
+    if (queueData[course] == undefined){
+        queueData[course] = {
+            queue: [],
+            password: password
+        };
+    } else {
+        if(queueData[course].password != password){
+            res.sendStatus(403);
+        }
     }
     res.render('ta', {
         title: 'The ' + course + ' help queue',
-        queue: studentQueue[course]
+        queue: queueData[course].queue
     });
 });
 
@@ -18,7 +27,7 @@ router.post('/:course/dequeue', function(req, res) {
     var course = req.params['course'];
 
     // remove first name from queue
-    studentQueue[course].shift();
+    queueData[course].queue.shift();
 
     res.sendStatus(200);
 });

@@ -11,8 +11,7 @@ var student = require('./routes/student');
 var ta = require('./routes/ta');
 
 var app = express();
-studentQueue = {};
-console.log('studentQueue emtpy');
+queueData = {};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

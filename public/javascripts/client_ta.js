@@ -14,7 +14,7 @@ function DequeueStudent(event){
     // enqueue with web sockets
     socket.emit('dequeue', data);
 
-    // enqueue with post request
-    $.post(window.location.href + '/dequeue', data);
-    $('body').load(window.location.href);
+    // dequeue with post request
+    $.post(course + '/dequeue', data);
+    location.reload();
 };

@@ -16,7 +16,6 @@ socket.on('enqueue', function(msg){
             $('#queueList').append('<li class=\'list-group-item\'>' + msg.name + '</li>');
         }
         else if (view == 'ta'){
-            //$('#queueList').append('<tr><td>' + msg.name + '</td><td>test</td></tr>');
             $('#queueList').append('<tr><td>' + msg.name + '</td><td>' + Date().toLocaleString() + '</td></tr>');
         }
     }
@@ -30,7 +29,6 @@ socket.on('dequeue', function(msg){
 
     // only dequeue if on the right course
     if (course == msg.course){
-        //$('body').load(window.location.href);
         $('#queueList :first-child').remove();
     }
 });

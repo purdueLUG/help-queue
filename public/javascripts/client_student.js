@@ -16,6 +16,6 @@ function enqueueStudent(event){
     socket.emit('enqueue', data);
 
     // enqueue with post request
-    $.post(window.location.href + '/enqueue', data);
-    $('body').load(window.location.href);
+    $.post(course + '/enqueue', data);
+    location.reload();
 };

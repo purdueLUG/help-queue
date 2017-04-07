@@ -102,12 +102,14 @@ io.on('connection', function(socket){
     // handle enqueue requests
     socket.on('enqueue', function(msg){
         if(queueData[msg.course].queue.find(matchName, msg.name) == undefined){
-            io.emit('enqueue', msg);
+            console.log('successful enqueue');
+            socket.broadcast.emit('enqueue', msg);
         }
     });
 
     //handle dequeue requests
     socket.on('dequeue', function(msg){
-        io.emit('dequeue', msg);
+        console.log('successful enqueue');
+        socket.broadcast.emit('dequeue', msg);
     });
 });

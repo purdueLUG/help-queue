@@ -23,14 +23,4 @@ router.get('/:course', function(req, res, next) {
 
 });
 
-// handle eneque requests
-router.post('/:course/dequeue', function(req, res) {
-    var course = req.params['course'];
-
-    // remove first name from queue
-    queueData[course].queue.shift();
-
-    res.sendStatus(200);
-});
-
 module.exports = router;

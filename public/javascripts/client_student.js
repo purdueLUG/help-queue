@@ -1,21 +1,19 @@
-
 // Enqueue student button
 $('#btnEnqueue').on('click', enqueueStudent);
 function enqueueStudent(event){
     // regex for finding course
-    var re = ".*/(.*)$";
+    var re = "/(.*)/(.*)$";
     // first element is full path, second is matched in the parens
-    var course = window.location.pathname.match(re)[1];
+    var view = window.location.pathname.match(re)[1];
+    var course = window.location.pathname.match(re)[2];
+    var name = Cookies.get('username');
 
-    data = {
-        name: Cookies.get('username'),
-        course: course
-    };
+    var data = [
+        course,
+        name
+    ];
 
-    // enqueue with web sockets
-    socket.emit('enqueue', data);
-
-    // enqueue with post request
-    $.post(course + '/enqueue', data);
-    location.reload();
+    // publishes don't get routed to the publisher
+    addStudentToQueueList(name, view);
+    session.publish('com.help-queue.enqueue', data);
 };

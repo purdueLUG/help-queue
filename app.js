@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var autobahn = require('autobahn');
 
 // routes
 var index = require('./routes/index');
@@ -48,5 +49,52 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// autobahn stuff
+function matchName(entry){
+    return(this == entry.name);
+}
+var connection = new autobahn.Connection({
+    url: 'ws://127.0.0.1:9000',
+    realm: 'realm1'
+});
+
+connection.onopen = function (session) {
+    console.log("connected to WAMP router");
+
+    session.subscribe('com.help-queue.enqueue', function (args) {
+        var course = args[0];
+        var name = args[1];
+        var timeStamp = Date().toLocaleString();
+        //queueData[course].append(name);
+        entry = {
+            name: name,
+            timeStamp: timeStamp
+        };
+
+        // ensure that queue exists
+        if(queueData[course] != undefined){
+            // enqueue student only if he's not in the queue already
+            if(queueData[course].queue.find(matchName, name) == undefined){
+                queueData[course].queue.push(entry);
+            }
+        }
+    });
+
+    session.subscribe('com.help-queue.dequeue', function (args) {
+        var course = args[0];
+
+        // ensure that queue exists
+        if(queueData[course] != undefined){
+            queueData[course].queue.shift();
+        }
+    });
+};
+
+connection.onclose = function (reason, details) {
+    console.log("WAMP connection closed", reason, details);
+};
+
+connection.open();
 
 module.exports = app;

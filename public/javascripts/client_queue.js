@@ -1,7 +1,16 @@
-var socket = io();
+// autobahn stuff
+var connection = new autobahn.Connection({
+    url: 'ws://127.0.0.1:9000/',
+    realm: 'realm1'
+});
 
-// asynchronous receive behavior
-socket.on('enqueue', function(msg){
+var session;
+
+connection.onopen = function (new_session) {
+    console.log("connected to WAMP router");
+
+    session = new_session;
+
     // regex for finding course
     var re = "/(.*)/(.*)$";
     // first element is full path, second is student or ta, third is course
@@ -9,26 +18,47 @@ socket.on('enqueue', function(msg){
     var view = match[1];
     var course = match[2];
 
-    // only enqueue if on the right course
-    if (course == msg.course){
-        //$('body').load(window.location.href);
-        if(view == 'student'){
-            $('#queueList').append('<li class=\'list-group-item\'>' + msg.name + '</li>');
+    new_session.subscribe('com.help-queue.enqueue', function (args) {
+        var name = args[1];
+        if (args[0] == course){
+            addStudentToQueueList(name, view);
         }
-        else if (view == 'ta'){
-            $('#queueList').append('<tr><td>' + msg.name + '</td><td>' + Date().toLocaleString() + '</td></tr>');
+    });
+
+    new_session.subscribe('com.help-queue.dequeue', function (args) {
+        if (args[0] == course){
+            removeStudentFromQueueList();
         }
-    }
-});
+    });
+};
 
-socket.on('dequeue', function(msg){
-    // regex for finding course
-    var re = ".*/(.*)$";
-    // first element is full path, second is matched in the parens
-    var course = window.location.pathname.match(re)[1];
+connection.onclose = function (reason, details) {
+    console.log("WAMP connection closed", reason, details);
+};
 
-    // only dequeue if on the right course
-    if (course == msg.course){
-        $('#queueList :first-child').remove();
+connection.open();
+
+// queueList modifying functions
+function addStudentToQueueList(name, view){
+    console.log('add student ', name, 'on view ', view);
+    var selector_string;
+    var append_string;
+    if (view == 'student'){
+        selector_string = '#queueList li:contains("' + name + '")';
+        append_string = '<li class=\'list-group-item\'>' + name + '</li>';
     }
-});
+    else if (view == 'ta'){
+        selector_string = '#queueList td:contains("' + name + '")';
+        append_string = '<tr><td>' + name + '</td><td>' + Date().toLocaleString() + '</td></tr>';
+    }
+
+    var duplicate = $(selector_string).length != 0;
+
+    if (duplicate == false) {
+        $('#queueList').append(append_string);
+    }
+};
+
+function removeStudentFromQueueList(){
+    $('#queueList :first-child').remove();
+};

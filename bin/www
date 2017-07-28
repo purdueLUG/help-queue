@@ -29,8 +29,6 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-io = require('socket.io').listen(server);
-
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -90,26 +88,3 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-/*
- * socket.io stuff
- */
-function matchName(entry){
-    return (this == entry.name);
-}
-
-io.on('connection', function(socket){
-    // handle enqueue requests
-    socket.on('enqueue', function(msg){
-        if(queueData[msg.course].queue.find(matchName, msg.name) == undefined){
-            console.log('successful enqueue');
-            socket.broadcast.emit('enqueue', msg);
-        }
-    });
-
-    //handle dequeue requests
-    socket.on('dequeue', function(msg){
-        console.log('successful enqueue');
-        socket.broadcast.emit('dequeue', msg);
-    });
-});

@@ -43,4 +43,31 @@ block content
             input#verifyPassword(type='password', class='form-control input-sm', placeholder='Verify password')
           div(class='form-group')
             input#submitCreateQueue(type='submit', class='btn', value='Create a queue!')
+  script.
+    var wsuri = "ws://127.0.0.1:9000";
+
+    var connection = new autobahn.Connection({
+        url: wsuri,
+        realm: "realm1"
+    });
+
+    // fired when connection is established and session attached
+    //
+    connection.onopen = function (session, details) {
+        console.log("Connected");
+
+        session.subscribe('com.help-queue.enqueue', function (args) {
+          console.log('Someone is visiting!');
+        });
+
+        session.publish('com.help-queue.enqueue', ['hello']);
+    };
+
+    // fired when connection was lost (or could not be established)
+    //
+    connection.onclose = function (reason, details) {
+        console.log("Connection lost: " + reason);
+    }
+
+    connection.open()
 

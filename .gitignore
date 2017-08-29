@@ -1,1 +1,3 @@
 node_modules
+*key.pub
+*key.priv

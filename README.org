@@ -1,6 +1,8 @@
 ** Dependencies
 *** npm
-     The Node Package Manager.  This will install all the needed node modules.
+     The Node Package Manager. This will install all the needed node modules.
+*** Crossbar
+    The WAMP router. This will route the asynchronous pub/sub communications between browsers and the server.
     
 ** Install
    Run these commands to install the help-queue server.
@@ -8,12 +10,23 @@
    git clone https://github.com/purdueLUG/help-queue
    cd help-queue
    npm install
+   pip3 install crossbar
    #+end_src
+   
+   Note that it is considered best practice to use pip in a Python virtual
+   environment.
+
 ** Usage
-   To start the server, run
+   To start the server, run the following from the repo directory
 
    #+begin_src
    npm start
+   #+end_src
+   
+   In another terminal, run the following from the repo directory
+
+   #+begin_src
+   crossbar start
    #+end_src
 
    The server will run by default on port 3000. If you want to run the server on port 80, run

@@ -1,6 +1,8 @@
 // autobahn stuff
+var crossbar_server= "127.0.0.01";
+
 var connection = new autobahn.Connection({
-    url: 'ws://127.0.0.1:9000/',
+    url: 'ws://' + crossbar_server + ':9000/',
     realm: 'realm1'
 });
 
@@ -60,5 +62,5 @@ function addStudentToQueueList(name, view){
 };
 
 function removeStudentFromQueueList(){
-    $('#queueList :first-child').remove();
+    $('#queueList > :first-child').remove();
 };
